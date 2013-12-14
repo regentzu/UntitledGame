@@ -1,4 +1,4 @@
-package com.regentzu.untitledgame.bodypart;
+package com.regentzu.untitledgame.bodypart.guidepart;
 import com.regentzu.untitledgame.bodypart.decorations.BreastSizes;
 class Breasts extends BodyPart {
 

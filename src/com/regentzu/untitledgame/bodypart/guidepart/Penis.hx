@@ -1,4 +1,4 @@
-package com.regentzu.untitledgame.bodypart;
+package com.regentzu.untitledgame.bodypart.guidepart;
 class Penis extends BodyPart {
 
     //length and girth recorded in cm

@@ -1,4 +1,5 @@
 package com.regentzu.untitledgame.bodypart.mainpart;
+import com.regentzu.untitledgame.bodypart.guidepart.Balls;
 class BallsHuman extends Balls{
     public function new() {
         super();

@@ -1,4 +1,5 @@
 package com.regentzu.untitledgame.bodypart.mainpart;
+import com.regentzu.untitledgame.bodypart.guidepart.Hair;
 import com.regentzu.untitledgame.bodypart.decorations.Colors;
 class HairHuman extends Hair{
 

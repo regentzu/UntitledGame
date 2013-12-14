@@ -1,5 +1,6 @@
 package com.regentzu.untitledgame.scene;
 
+import flash.text.TextField;
 import com.haxepunk.graphics.Text;
 import com.regentzu.untitledgame.character.Character;
 import com.haxepunk.Entity;
@@ -17,9 +18,9 @@ class GameScene extends Scene {
     {
         //addGraphic(new Image("graphics/block.png"));
         var temp:Character = new GenericMaleHuman();
-        var textBox:Entity = new Entity();
-        textBox.addGraphic(new Text(temp.getDescription()));
+        var textGraphic = new Text(temp.getDescription());
+        textGraphic.scrollY = 1.0;
+        var textBox:Entity = new Entity(30,30,textGraphic);
         add(textBox);
-
     }
 }

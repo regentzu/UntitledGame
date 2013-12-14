@@ -2,23 +2,23 @@ package com.regentzu.untitledgame.character;
 
 import com.regentzu.untitledgame.bodypart.BodyPart;
 import com.haxepunk.Entity;
-import com.regentzu.untitledgame.bodypart.Breasts;
-import com.regentzu.untitledgame.bodypart.Anus;
-import com.regentzu.untitledgame.bodypart.Vagina;
-import com.regentzu.untitledgame.bodypart.Clitoris;
-import com.regentzu.untitledgame.bodypart.Balls;
-import com.regentzu.untitledgame.bodypart.Penis;
-import com.regentzu.untitledgame.bodypart.Feet;
-import com.regentzu.untitledgame.bodypart.Legs;
-import com.regentzu.untitledgame.bodypart.Hands;
-import com.regentzu.untitledgame.bodypart.Arms;
+import com.regentzu.untitledgame.bodypart.guidepart.Breasts;
+import com.regentzu.untitledgame.bodypart.guidepart.Anus;
+import com.regentzu.untitledgame.bodypart.guidepart.Vagina;
+import com.regentzu.untitledgame.bodypart.guidepart.Clitoris;
+import com.regentzu.untitledgame.bodypart.guidepart.Balls;
+import com.regentzu.untitledgame.bodypart.guidepart.Penis;
+import com.regentzu.untitledgame.bodypart.guidepart.Feet;
+import com.regentzu.untitledgame.bodypart.guidepart.Legs;
+import com.regentzu.untitledgame.bodypart.guidepart.Hands;
+import com.regentzu.untitledgame.bodypart.guidepart.Arms;
 import com.regentzu.untitledgame.bodypart.Wings;
-import com.regentzu.untitledgame.bodypart.Torso;
-import com.regentzu.untitledgame.bodypart.Face;
-import com.regentzu.untitledgame.bodypart.Eyes;
-import com.regentzu.untitledgame.bodypart.Hair;
-import com.regentzu.untitledgame.bodypart.Antenna;
-import com.regentzu.untitledgame.bodypart.Horns;
+import com.regentzu.untitledgame.bodypart.guidepart.Torso;
+import com.regentzu.untitledgame.bodypart.guidepart.Face;
+import com.regentzu.untitledgame.bodypart.guidepart.Eyes;
+import com.regentzu.untitledgame.bodypart.guidepart.Hair;
+import com.regentzu.untitledgame.bodypart.guidepart.Antenna;
+import com.regentzu.untitledgame.bodypart.guidepart.Horns;
 
 /**
 * Character class that will be the base of enemies, npc's and the player
