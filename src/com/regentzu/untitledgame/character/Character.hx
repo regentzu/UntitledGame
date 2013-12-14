@@ -1,5 +1,7 @@
 package com.regentzu.untitledgame.character;
 
+import com.regentzu.untitledgame.bodypart.BodyPart;
+import com.haxepunk.Entity;
 import com.regentzu.untitledgame.bodypart.Breasts;
 import com.regentzu.untitledgame.bodypart.Anus;
 import com.regentzu.untitledgame.bodypart.Vagina;
@@ -23,7 +25,7 @@ import com.regentzu.untitledgame.bodypart.Horns;
 *
 *
 **/
-class Character {
+class Character extends Entity {
 
     // Base Stats
     private var levelMultiplier:Float = 0.1;
@@ -38,10 +40,14 @@ class Character {
     private var currentStamina:Float;
     private var currentMagicka:Float;
     private var currentCorruption:Float = 0.0;
-    private var coins:Int = 0;
+    private var characterHeight:Float = 180.0; //height in centimeters
+    private var coins:Int = 0; //currency
 
     // Inventory
-    private var inventory:Array<Dynamic> = new Array<Dynamic>();
+    private var inventory:Array<Dynamic>;
+
+    // Special Flags
+    private var flags:Map<CharacterFlags, Bool>;
 
     // Body Parts
     private var horns:Horns;
@@ -65,6 +71,23 @@ class Character {
     private var anus:Anus;
 
     public function new() {
+        super();
+        //create an empty inventory
+        inventory = new Array<Dynamic>();
+
+        //prep the flag system
+        flags = new Map<CharacterFlags, Bool>();
+
+        //spawn at full readiness
+        currentHealth = getMaximumHealth();
+        currentStamina = getMaximumStamina();
+        currentMagicka = getMaximumMagicka();
+
+        //create arrays to support multiple body parts
+        breasts = new Array<Breasts>();
+        cocks = new Array<Penis>();
+        balls = new Array<Balls>();
+        cunts = new Array<Vagina>();
     }
 
     // BaseStats Calculation
@@ -129,6 +152,14 @@ class Character {
         level = newLevel;
     }
 
+    public function getCharacterHeight():Float {
+        return characterHeight;
+    }
+
+    public function setCharacterHeight(newHeight:Float) {
+        characterHeight = newHeight;
+    }
+
     public function getCoins():Int {
         return coins;
     }
@@ -146,7 +177,7 @@ class Character {
         horns = newPart;
     }
 
-    public function getAntenna():Horns {
+    public function getAntenna():Antenna {
         return antenna;
     }
 
@@ -276,29 +307,35 @@ class Character {
     }
 
     // Other Functions
+
+    private function safeGetPartDescription(part:BodyPart):String {
+        if(part != null) { return part.getDescription(); }
+        return "";
+    }
+
     public function getDescription():String {
 
-        var breastsDescription = '';
+        var breastsDescription:String = '';
         for( i in 0...breasts.length) {
-            breastsDescription += '$i: ${breasts[i].getDescription()}'
+            breastsDescription += '$i: ${safeGetPartDescription(breasts[i])}';
         }
 
-        var cocksDescription = '';
+        var cocksDescription:String = '';
         for( i in 0...cocks.length) {
-            cocksDescription += '$i: ${cocks[i].getDescription()}'
+            cocksDescription += '$i: ${safeGetPartDescription(cocks[i])}';
         }
 
-        var ballsDescription = '';
+        var ballsDescription:String = '';
         for( i in 0...balls.length) {
-            ballsDescription += '$i: ${balls[i].getDescription()}'
+            ballsDescription += '$i: ${safeGetPartDescription(balls[i])}';
         }
 
-        var cuntsDescription = '';
+        var cuntsDescription:String = '';
         for( i in 0...cunts.length) {
-            cuntsDescription += '$i: ${cunts[i].getDescription()}'
+            cuntsDescription += '$i: ${safeGetPartDescription(cunts[i])}';
         }
 
-        description = '
+        var description:String = '
         <b>Test Description. Override getDescription() to provide a description for this creature</b>
 
         <b>Stats</b>
@@ -314,19 +351,21 @@ class Character {
         CurrentMagicka: $currentMagicka
         MaxCorruption: ${getMaximumCorruption()}
         CurrentCorruption: $currentCorruption
+        ';
 
+        description += '
         <b>Body Parts</b>
-        Horns: ${horns.getDescription()}
-        Antenna: ${antenna.getDescription()}
-        Hair: ${hair.getDescription()}
-        Eyes: ${eyes.getDescription()}
-        Face: ${face.getDescription()}
-        Torso: ${torso.getDescription()}
-        Wings: ${wings.getDescription()}
-        Arms: ${arms.getDescription()}
-        Hands: ${hands.getDescription()}
-        Legs: ${legs.getDescription()}
-        Feet: ${feet.getDescription()}
+        Horns: ${safeGetPartDescription(horns)}
+        Antenna: ${safeGetPartDescription(antenna)}
+        Hair: ${safeGetPartDescription(hair)}
+        Eyes: ${safeGetPartDescription(eyes)}
+        Face: ${safeGetPartDescription(face)}
+        Torso: ${safeGetPartDescription(torso)}
+        Wings: ${safeGetPartDescription(wings)}
+        Arms: ${safeGetPartDescription(arms)}
+        Hands: ${safeGetPartDescription(hands)}
+        Legs: ${safeGetPartDescription(legs)}
+        Feet: ${safeGetPartDescription(feet)}
 
         <b>Sexual Parts</b>
         BreastsCount: ${breasts.length}}
@@ -335,10 +374,10 @@ class Character {
         Cocks: $cocksDescription
         BallsCount: ${balls.length}
         Balls: $ballsDescription
-        Clit: ${clit.getDescription()}
+        Clit: ${safeGetPartDescription(clit)}
         CuntsCount: ${cunts.length}
         Cunts: $cuntsDescription
-        Anus: ${anus.getDescription()}
+        Anus: ${safeGetPartDescription(anus)}
         ';
         return description;
     }

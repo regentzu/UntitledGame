@@ -6,6 +6,7 @@ class Penis extends BodyPart {
     private var girth:Float;
 
     public function new() {
+        super();
     }
 
     public function getLength():Float {

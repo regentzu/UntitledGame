@@ -2,27 +2,28 @@ package com.regentzu.untitledgame.bodypart;
 class BodyPart {
 
     //short descriptions
-    private var shortDescriptions : Array<String> = new Array<String>();
+    private var shortDescriptions:Array<String>;
     //description for the bodypart
-    private var description : String = "";
+    private var description:String = "";
     //dynamic property map
-    private var properties : Map<String,Dynamic> = new Map<String,Dynamic>();
+    private var properties:Map<BodyPartProperty,Dynamic>;
 
     public function new() {
-
+        shortDescriptions = new Array<String>();
+        properties = new Map<BodyPartProperty,Dynamic>();
     }
 
     // Property Functions //
 
-    public function has(key:String):Bool {
+    public function has(key:BodyPartProperty):Bool {
         return properties.exists(key);
     }
 
-    public function get(key:String):Dynamic {
-        properties.get(key);
+    public function get(key:BodyPartProperty):Dynamic {
+        return properties.get(key);
     }
 
-    public function set(key:String, value:Dynamic) {
+    public function set(key:BodyPartProperty, value:Dynamic) {
         properties.set(key, value);
     }
 
