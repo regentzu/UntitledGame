@@ -11,7 +11,9 @@ Untitled Game is a development project with the end goal of a 2D RPG text powere
 
 ## Credits:
 ### Developers:
-* Regent Zu <regent.zu@gmail.com>
+* Regent Zu [regent.zu@gmail.com]
 ### Software Used:
 * Java 1.7
 * Java FX 2
+* SLF4J
+* Log4J
