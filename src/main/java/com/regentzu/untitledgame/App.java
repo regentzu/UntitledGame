@@ -32,9 +32,10 @@ public class App extends Application
     @Override
     public void start(Stage primaryStage) throws Exception {
         ClassLoader cl = this.getClass().getClassLoader();
-        Parent root = FXMLLoader.load(cl.getResource("gui/sample.fxml"));
+        Parent root = FXMLLoader.load(cl.getResource("fxml/mainapp/MainApp.fxml"));
         primaryStage.setTitle("Untitled Game");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }
