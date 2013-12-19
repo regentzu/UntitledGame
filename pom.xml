@@ -40,6 +40,11 @@
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.7.5</version>
     </dependency>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>2.10.2</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -48,12 +53,17 @@
     <pluginManagement>
       <plugins>	
         <plugin>
-	  <groupId>com.zenjava</groupId>
-	  <artifactId>javafx-maven-plugin</artifactId>
-	  <version>2.0</version>
-	  <configuration>
-	    <mainClass>com.regentzu.untitledgame.App</mainClass>
-	  </configuration>
+	        <groupId>com.zenjava</groupId>
+	        <artifactId>javafx-maven-plugin</artifactId>
+	        <version>2.0</version>
+	        <configuration>
+	          <mainClass>com.regentzu.untitledgame.App</mainClass>
+	        </configuration>
+        </plugin>
+        <plugin>
+          <groupId>net.alchim31.maven</groupId>
+          <artifactId>scala-maven-plugin</artifactId>
+          <version>3.1.6</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -61,11 +71,40 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-	<version>3.1</version>
-	<configuration>
+	      <version>3.1</version>
+	      <configuration>
           <source>1.7</source>
           <target>1.7</target>
         </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>scala-compile-first</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-source</goal>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>scala-test-compile</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
