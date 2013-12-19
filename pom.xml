@@ -16,6 +16,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdk.version>1.7</jdk.version>
   </properties>
 
   <dependencies>
@@ -45,6 +46,11 @@
       <artifactId>scala-library</artifactId>
       <version>2.10.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.scalafx</groupId>
+      <artifactId>scalafx_2.10</artifactId>
+      <version>8.0.0-M1</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -73,8 +79,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
 	      <version>3.1</version>
 	      <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>${jdk.version}</source>
+          <target>${jdk.version}</target>
         </configuration>
         <executions>
           <execution>
@@ -106,7 +112,37 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>com.regentzu.untitledgame.MainApp</mainClass>
+              <classpathPrefix>lib</classpathPrefix>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.5.1</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-
 </project>
