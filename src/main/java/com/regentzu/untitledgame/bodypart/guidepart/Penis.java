@@ -7,11 +7,28 @@ import com.regentzu.untitledgame.bodypart.BodyPart;
  */
 public abstract class Penis extends BodyPart {
 
-    public Float length = 15.0f; //length in cm
-    public Float girth = 7.5f; //diameter in cm
+    protected float length; //length in cm
+    protected float girth; //diameter in cm
 
     @Override
     protected void partSetup() {
-        //TODO: initialize generic parts
+        this.length = 15f;
+        this.girth = 7f;
+    }
+
+    public float getLength() {
+        return length;
+    }
+
+    public void setLength(float length) {
+        this.length = length;
+    }
+
+    public float getGirth() {
+        return girth;
+    }
+
+    public void setGirth(float girth) {
+        this.girth = girth;
     }
 }

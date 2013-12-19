@@ -22,7 +22,7 @@ public class GenericMaleHuman extends com.regentzu.untitledgame.character.Charac
         legs = new LegsHuman();
         feet = new FeetHuman();
         Breasts manlyBreasts = new BreastsHuman();
-        manlyBreasts.size = BreastSizes.MANLY;
+        manlyBreasts.setSize(BreastSizes.MANLY);
         breasts.add(manlyBreasts);
         cocks.add(new PenisHuman());
         balls.add(new BallsHuman());

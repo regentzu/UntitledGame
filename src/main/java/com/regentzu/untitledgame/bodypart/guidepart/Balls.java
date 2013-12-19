@@ -7,11 +7,18 @@ import com.regentzu.untitledgame.bodypart.BodyPart;
  */
 public abstract class Balls extends BodyPart{
 
-    public Float width = 1.0f;
+    protected Float width;
 
     @Override
     protected void partSetup() {
-        //TODO: initialize generic parts
+        this.width = 1f;
     }
 
+    public Float getWidth() {
+        return width;
+    }
+
+    public void setWidth(Float width) {
+        this.width = width;
+    }
 }

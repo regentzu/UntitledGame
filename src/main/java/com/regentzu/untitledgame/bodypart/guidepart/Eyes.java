@@ -8,11 +8,18 @@ import com.regentzu.untitledgame.bodypart.decorator.Colors;
  */
 public abstract class Eyes extends BodyPart {
 
-    public Colors color = Colors.BLUE;
+    public Colors color;
 
     @Override
     protected void partSetup() {
-        //TODO: initialize generic parts
+        this.color = Colors.BLUE;
     }
 
+    public Colors getColor() {
+        return color;
+    }
+
+    public void setColor(Colors color) {
+        this.color = color;
+    }
 }

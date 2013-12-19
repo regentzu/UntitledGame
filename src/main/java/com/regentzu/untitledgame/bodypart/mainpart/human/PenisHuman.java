@@ -8,6 +8,6 @@ import com.regentzu.untitledgame.bodypart.guidepart.Penis;
 public class PenisHuman extends Penis {
     @Override
     protected void init() {
-        description = String.format("an average human cock, %s cm long, and %s cm wide",length,girth);
+        description = String.format("an average human cock, %s cm long, and %s cm wide", getLength(), getGirth());
     }
 }

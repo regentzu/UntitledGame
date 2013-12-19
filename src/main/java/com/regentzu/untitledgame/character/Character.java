@@ -6,6 +6,8 @@ import com.regentzu.untitledgame.inventory.Inventory;
 import com.regentzu.untitledgame.inventory.InventoryException;
 import com.regentzu.untitledgame.inventory.InventoryItem;
 import com.regentzu.untitledgame.modifier.Modifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +18,8 @@ import java.util.Map;
  * Created on 12/16/13.
  */
 public abstract class Character {
+
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     //Base Stats
     protected Float levelMultiplier = 0.02f;
@@ -63,9 +67,9 @@ public abstract class Character {
     protected Feet feet;
 
     //Sexual Body Parts
-    protected List<Breasts> breasts;
-    protected List<Penis> cocks;
-    protected List<Balls> balls;
+    protected List<Breasts> breasts = new ArrayList<Breasts>();
+    protected List<Penis> cocks = new ArrayList<Penis>();
+    protected List<Balls> balls = new ArrayList<Balls>();
     protected Clitoris clit;
     protected Vagina cunt;
     protected Anus anus;
@@ -77,9 +81,27 @@ public abstract class Character {
         this.currentMagicka = this.getMaximumMagicka();
         this.currentArmor = getMaximumArmor();
         init();
+        sanityCheck();
     }
 
     protected abstract void init();
+
+    /**
+     * simple check that basic parts are initialized
+     */
+    private void sanityCheck() {
+        if (this.hair == null
+                || this.eyes == null
+                || this.face == null
+                || this.torso == null
+                || this.arms == null
+                || this.hands == null
+                || this.legs == null
+                || this.feet == null
+                || this.anus == null) {
+            logger.warn("One or more essential body parts were not initialized for the class");
+        }
+    }
 
     private Float getMultiplier() {
         return 1.0f + (this.levelMultiplier * level);
@@ -169,39 +191,55 @@ public abstract class Character {
         buffer.append("Inventory:<br/><ul>\n");
         buffer.append(inventoryString);
         buffer.append("</ul><br/>\n");
-        buffer.append(String.format("Health: %f/%f current/max<br/>\n",this.currentHealth, this.getMaximumHealth()));
-        buffer.append(String.format("Stamina: %f/%f current/max<br/>\n",this.currentStamina, this.getMaximumStamina()));
-        buffer.append(String.format("Magicka: %f/%f current/max<br/>\n",this.currentMagicka, this.getMaximumMagicka()));
-        buffer.append(String.format("Corruption: %f/%f current/max<br/>\n",this.currentCorruption, this.getMaximumCorruption()));
+        buffer.append(String.format("Health: %s/%s current/max<br/>\n",this.currentHealth, this.getMaximumHealth()));
+        buffer.append(String.format("Stamina: %s/%s current/max<br/>\n",this.currentStamina, this.getMaximumStamina()));
+        buffer.append(String.format("Magicka: %s/%s current/max<br/>\n",this.currentMagicka, this.getMaximumMagicka()));
+        buffer.append(String.format("Corruption: %s/%s current/max<br/>\n",this.currentCorruption, this.getMaximumCorruption()));
         buffer.append("<br/>\n");
         buffer.append("<b>Body Parts</b><br/>\n");
-        buffer.append(String.format("Horns: %s<br/>\n",this.getSafeDescription(this.horns)));
-        buffer.append(String.format("Antenna: %s<br/>\n",this.getSafeDescription(this.antenna)));
+        if(horns != null) {
+            buffer.append(String.format("Horns: %s<br/>\n",this.getSafeDescription(this.horns)));
+        }
+        if(antenna != null) {
+            buffer.append(String.format("Antenna: %s<br/>\n",this.getSafeDescription(this.antenna)));
+        }
         buffer.append(String.format("Hair: %s<br/>\n",this.getSafeDescription(this.hair)));
         buffer.append(String.format("Eyes: %s<br/>\n",this.getSafeDescription(this.eyes)));
         buffer.append(String.format("Face: %s<br/>\n",this.getSafeDescription(this.face)));
         buffer.append(String.format("Torso: %s<br/>\n",this.getSafeDescription(this.torso)));
-        buffer.append(String.format("Wings: %s<br/>\n",this.getSafeDescription(this.wings)));
+        if(wings != null) {
+            buffer.append(String.format("Wings: %s<br/>\n",this.getSafeDescription(this.wings)));
+        }
         buffer.append(String.format("Arms: %s<br/>\n",this.getSafeDescription(this.arms)));
         buffer.append(String.format("Hands: %s<br/>\n",this.getSafeDescription(this.hands)));
         buffer.append(String.format("Legs: %s<br/>\n",this.getSafeDescription(this.legs)));
         buffer.append(String.format("Feet: %s<br/>\n",this.getSafeDescription(this.feet)));
         buffer.append("<br/>\n");
         buffer.append("<b>Sexual Body Parts</b><br/>\n");
-        buffer.append(String.format("Breasts Count: %d<br/>\n",this.breasts.size()));
-        buffer.append("Breasts:<br/><ul>\n");
-        buffer.append(breastsString);
-        buffer.append("</ul>\n");
-        buffer.append(String.format("Cock Count: %s<br/>\n",this.cocks.size()));
-        buffer.append("Cocks:<br/><ul>\n");
-        buffer.append(cocksString);
-        buffer.append("</ul>\n");
-        buffer.append(String.format("BallsCount: %s<br/>\n",this.getSafeDescription(this.face)));
-        buffer.append("Balls:<br/><ul>\n");
-        buffer.append(ballsString);
-        buffer.append("</ul>\n");
-        buffer.append(String.format("Clit: %s<br/>\n",this.getSafeDescription(this.clit)));
-        buffer.append(String.format("Cunt: %s<br/>\n",this.getSafeDescription(this.cunt)));
+        if(breasts.size() > 0) {
+            buffer.append(String.format("Breasts Count: %d<br/>\n",this.breasts.size()));
+            buffer.append("Breasts:<br/><ul>\n");
+            buffer.append(breastsString);
+            buffer.append("</ul>\n");
+        }
+        if(cocks.size() > 0) {
+            buffer.append(String.format("Cock Count: %s<br/>\n",this.cocks.size()));
+            buffer.append("Cocks:<br/><ul>\n");
+            buffer.append(cocksString);
+            buffer.append("</ul>\n");
+        }
+        if(balls.size() > 0) {
+            buffer.append(String.format("BallsCount: %s<br/>\n",this.balls.size()));
+            buffer.append("Balls:<br/><ul>\n");
+            buffer.append(ballsString);
+            buffer.append("</ul>\n");
+        }
+        if(clit != null) {
+            buffer.append(String.format("Clit: %s<br/>\n",this.getSafeDescription(this.clit)));
+        }
+        if(cunt != null) {
+            buffer.append(String.format("Cunt: %s<br/>\n",this.getSafeDescription(this.cunt)));
+        }
         buffer.append(String.format("Anus: %s<br/>\n",this.getSafeDescription(this.anus)));
         return buffer.toString();
     }

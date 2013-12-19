@@ -7,11 +7,19 @@ import com.regentzu.untitledgame.bodypart.BodyPart;
  */
 public abstract class Clitoris extends BodyPart {
 
-    public Float length = 1.5f; //length in cm
+    protected Float length; //length in cm
 
     @Override
     protected void partSetup() {
         //TODO: initialize generic parts
+        this.length = 1.5f;
     }
 
+    public Float getLength() {
+        return length;
+    }
+
+    public void setLength(Float length) {
+        this.length = length;
+    }
 }

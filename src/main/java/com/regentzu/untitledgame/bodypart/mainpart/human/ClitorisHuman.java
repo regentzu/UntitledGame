@@ -8,6 +8,6 @@ import com.regentzu.untitledgame.bodypart.guidepart.Clitoris;
 public class ClitorisHuman extends Clitoris {
     @Override
     protected void init() {
-        description = String.format("an unassuming human clitoris measuring %s cm long",length);
+        description = String.format("an unassuming human clitoris measuring %s cm long",getLength());
     }
 }

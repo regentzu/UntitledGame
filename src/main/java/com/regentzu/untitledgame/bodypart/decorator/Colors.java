@@ -13,9 +13,18 @@ public enum Colors {
     YELLOW("yellow"),
     VIOLET("violet");
 
-    public String description;
+    protected String description;
 
     Colors(String colorDescription) {
         this.description = colorDescription;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String toString() {
+        return getDescription();
     }
 }

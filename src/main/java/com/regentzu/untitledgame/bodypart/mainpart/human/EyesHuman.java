@@ -10,6 +10,6 @@ public class EyesHuman extends Eyes {
     @Override
     protected void init() {
         color = Colors.GREEN;
-        description = String.format("clear %s eyes",color);
+        description = String.format("clear %s eyes",getColor().getDescription());
     }
 }

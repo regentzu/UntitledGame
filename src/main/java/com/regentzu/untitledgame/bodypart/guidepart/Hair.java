@@ -8,11 +8,28 @@ import com.regentzu.untitledgame.bodypart.decorator.Colors;
  */
 public abstract class Hair extends BodyPart {
 
-    public Float length = 2.5f; //length in cm
-    public Colors color = Colors.BROWN;
+    protected Float length; //length in cm
+    protected Colors color;
 
     @Override
     protected void partSetup() {
-        //TODO: initialize generic parts
+        this.length = 2.5f;
+        this.color = Colors.BROWN;
+    }
+
+    public Float getLength() {
+        return length;
+    }
+
+    public void setLength(Float length) {
+        this.length = length;
+    }
+
+    public Colors getColor() {
+        return color;
+    }
+
+    public void setColor(Colors color) {
+        this.color = color;
     }
 }

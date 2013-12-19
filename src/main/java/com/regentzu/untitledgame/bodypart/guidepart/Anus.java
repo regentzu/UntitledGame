@@ -8,12 +8,29 @@ import com.regentzu.untitledgame.bodypart.BodyPartProperties;
  */
 public abstract class Anus extends BodyPart {
 
-    public int capacity = 1;
-    public int wetness = 1;
+    protected int capacity = 1;
+    protected int wetness = 1;
 
     @Override
     protected void partSetup() {
         this.properties.put(BodyPartProperties.virgin, true);
+        this.capacity = 1;
+        this.wetness = 1;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getWetness() {
+        return wetness;
+    }
+
+    public void setWetness(int wetness) {
+        this.wetness = wetness;
+    }
 }

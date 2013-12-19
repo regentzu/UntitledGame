@@ -1,4 +1,4 @@
-package sample;
+package com.regentzu.untitledgame.sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        ClassLoader cl = this.getClass().getClassLoader();
+        Parent root = FXMLLoader.load(cl.getResource("gui/sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();

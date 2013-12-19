@@ -11,6 +11,6 @@ public class HairHuman extends Hair {
     protected void init() {
         color = Colors.BROWN;
         length = 5.08f;
-        description = String.format("unremarkable %d hair, measuring %f centimeters in length", color, length);
+        description = String.format("unremarkable %s hair, measuring %s centimeters in length", getColor().getDescription(), getLength());
     }
 }

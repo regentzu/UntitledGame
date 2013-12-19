@@ -8,6 +8,6 @@ import com.regentzu.untitledgame.bodypart.guidepart.Balls;
 public class BallsHuman extends Balls {
     @Override
     protected void init() {
-        description = String.format("a pair of average human balls, each #s cm in diameter",width);
+        description = String.format("a pair of average human balls, each %s cm in diameter", getWidth());
     }
 }
