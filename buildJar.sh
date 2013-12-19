@@ -1,1 +1,1 @@
-mvn clean resources:resources jfx:jar
+mvn clean publish
